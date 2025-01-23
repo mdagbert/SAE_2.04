@@ -45,6 +45,7 @@ CREATE TABLE jean(
    description TEXT,
    marque VARCHAR(50),
    fournisseur VARCHAR(50),
+    photo VARCHAR(255),
    taille_id INT NOT NULL,
    coupe_jean_id INT NOT NULL,
    PRIMARY KEY(id_jean),
