@@ -4,6 +4,7 @@
 from flask import Flask, request, render_template, redirect, url_for, abort, flash, session, g
 from flask import Blueprint
 
+import git
 
 from controllers.auth_security import *
 from controllers.fixtures_load import *
@@ -41,6 +42,16 @@ def show_accueil():
         else:
             return redirect('/client/article/show')
     return render_template('auth/layout.html')
+
+
+@app.route('/update_server', methods=['POST'])
+def webhook():
+    if request.method == 'POST':
+        repo = git.Repo('/home/MathDriprio/SAE_2.04/.git')
+        origin = repo.remotes.origin.pull()
+        return 'Updated PythonAnywhere successfully', 200
+    else:
+        return 'Wrong event type', 400
 
 ##################
 # Authentification
