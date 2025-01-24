@@ -10,80 +10,21 @@ fixtures_load = Blueprint('fixtures_load', __name__,
 
 @fixtures_load.route('/base/init')
 def fct_fixtures_load():
+    db = get_db()
     mycursor = get_db().cursor()
-    sql='''DROP TABLE IF EXISTS   '''
-
-    mycursor.execute(sql)
-    sql='''
-    CREATE TABLE utilisateur(
-  
-    )  DEFAULT CHARSET utf8;  
-    '''
-    mycursor.execute(sql)
-    sql=''' 
-    INSERT INTO utilisateur
-    '''
-    mycursor.execute(sql)
-
-    sql=''' 
-    CREATE TABLE type_article(
-    
-    )  DEFAULT CHARSET utf8;  
-    '''
-    mycursor.execute(sql)
-    sql=''' 
-INSERT INTO type_article
-    '''
-    mycursor.execute(sql)
-
-
-    sql=''' 
-    CREATE TABLE etat (
-    )  DEFAULT CHARSET=utf8;  
-    '''
-    mycursor.execute(sql)
-    sql = ''' 
-INSERT INTO etat
-     '''
-    mycursor.execute(sql)
-
-    sql = ''' 
-    CREATE TABLE article (
-    )  DEFAULT CHARSET=utf8;  
-     '''
-    mycursor.execute(sql)
-    sql = ''' 
-    INSERT INTO article (
-
-         '''
-    mycursor.execute(sql)
-
-    sql = ''' 
-    CREATE TABLE commande (
-    ) DEFAULT CHARSET=utf8;  
-     '''
-    mycursor.execute(sql)
-    sql = ''' 
-    INSERT INTO commande 
-                 '''
-    mycursor.execute(sql)
-
-    sql = ''' 
-    CREATE TABLE ligne_commande(
-    );
-         '''
-    mycursor.execute(sql)
-    sql = ''' 
-    INSERT INTO ligne_commande 
-         '''
-    mycursor.execute(sql)
-
-
-    sql = ''' 
-    CREATE TABLE ligne_panier (
-    );  
-         '''
-    mycursor.execute(sql)
+    with open("/home/MathDriprio/SAE_2.04/sae_sql.sql", 'r', encoding='utf-8') as sql_file:
+        sql_commands = sql_file.read()
+    with mycursor as cursor:
+        try:
+            for command in sql_commands.split(';'):
+                command = command.strip()
+                if command:
+                    cursor.execute(command)
+            db.commit()
+            print("Database initialiser avec succès.")
+        except Exception as e:
+            db.rollback()
+            print(f"Une erreur s'est produite lors de l'initialisation: {e}")
 
 
     get_db().commit()

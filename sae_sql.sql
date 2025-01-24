@@ -29,7 +29,6 @@ CREATE TABLE utilisateur(
    role VARCHAR(50),
    PRIMARY KEY(id_utilisateur)
 );
-
 CREATE TABLE etat(
    id_etat INT AUTO_INCREMENT,
    libelle VARCHAR(50),
@@ -124,3 +123,5 @@ INSERT INTO jean(id_jean, nom_jean, prix_jean, matiere, couleur, description, ma
 (NULL, 'jean Recycle ', '40', 'materiaux recyclés','noir', 'Jean droit noir', 'Bershka', 'BZB','jean_noir_droit.jpg',NULL, NULL),
 (NULL, 'jean Michou ', '70', 'polyester','noir', 'Jean droit noir', 'Calvin Klein', 'Officine Générale','jean_noir_droit2.jpg',NULL, NULL),
 (NULL, 'jean Goat ', '45', 'coton','noir', 'Jean slim noir', 'Bershka', 'BZB','jean_noir_slim.jpg',NULL, NULL);
+
+INSERT INTO utilisateur (login, email, nom, password, role) VALUES ("client", "client@test.fr", "Sacré Client", "client", "user");

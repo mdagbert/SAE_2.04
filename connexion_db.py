@@ -7,11 +7,11 @@ def get_db():
     if db is None:
         #
         db = g._database = pymysql.connect(
-            host="localhost",
+            host="MathDriprio.mysql.pythonanywhere-services.com",
             # host="serveurmysql",
             user="MathDriprio",
             password="superSecretPassword",
-            database="BDD_SAE204",
+            database="MathDriprio$BDD_SAE204",
             charset='utf8mb4',
             cursorclass=pymysql.cursors.DictCursor
         )
