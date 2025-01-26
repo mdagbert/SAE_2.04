@@ -12,7 +12,13 @@ def client_article_show():
     mycursor = get_db().cursor()
     id_client = session.get('id_user')
 
-    sql = '''SELECT * FROM jean;'''
+    sql = '''SELECT 
+                 jean.id_jean AS id_article,
+            jean.nom_jean AS nom,
+            jean.prix_jean AS prix,
+            jean.stock AS stock,
+            jean.photo AS image,
+     FROM jean;'''
     mycursor.execute(sql)
     articles = mycursor.fetchall()
 
