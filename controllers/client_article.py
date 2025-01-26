@@ -17,7 +17,7 @@ def client_article_show():
             jean.nom_jean AS nom,
             jean.prix_jean AS prix,
             jean.stock AS stock,
-            jean.photo AS image,
+            jean.photo AS image 
      FROM jean;'''
     mycursor.execute(sql)
     articles = mycursor.fetchall()
