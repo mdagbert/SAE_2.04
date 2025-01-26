@@ -20,15 +20,15 @@ def client_article_show():
     # types_article = []
 
     # Calcul du prix total du panier
-    if len(articles_panier) >= 1:
-        prix_total = sum(article['prix'] * article['quantite'] for article in articles_panier)
-    else:
-        prix_total = 0
+    # if len(articles_panier) >= 1:
+    #     prix_total = sum(article['prix'] * article['quantite'] for article in articles_panier)
+    # else:
+    #     prix_total = 0
 
     # Rendu de la page
     return render_template('client/boutique/panier_article.html',
                            articles=articles,
                            # articles_panier=articles_panier,
-                           prix_total=prix_total,
+                           prix_total=0,
                            # items_filtre=types_article
                            )
