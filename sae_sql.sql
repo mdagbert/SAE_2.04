@@ -83,7 +83,6 @@ CREATE TABLE IF NOT EXISTS ligne_panier (
    CONSTRAINT fk_ligne_panier_utilisateur FOREIGN KEY (utilisateur_id) REFERENCES utilisateur (id_utilisateur)
 );
 
--- Populate the `etat` table
 INSERT INTO etat (libelle) VALUES
 ('en attente'),
 ('expédié'),
@@ -98,21 +97,48 @@ INSERT INTO taille (nom_taille) VALUES
 ('W34'),
 ('W38');
 
--- Populate the `coupe_jean` table
 INSERT INTO coupe_jean (nom_coupe) VALUES
 ('slim'),
 ('droit'),
 ('large'),
 ('ajuste');
 
--- Populate the `utilisateur` table
 INSERT INTO utilisateur (login, email, nom, password, role, est_actif) VALUES
 ('admin', 'admin@admin.fr', 'admin', 'pbkdf2:sha256:1000000$eQDrpqICHZ9eaRTn$446552ca50b5b3c248db2dde6deac950711c03c5d4863fe2bd9cef31d5f11988', 'ROLE_admin', '1'),
 ('client', 'client@client.fr', 'client', 'pbkdf2:sha256:1000000$jTcSUnFLWqDqGBJz$bf570532ed29dc8e3836245f37553be6bfea24d19dfb13145d33ab667c09b349', 'ROLE_client', '1'),
 ('client2', 'client2@client2.fr', 'client2', 'pbkdf2:sha256:1000000$qDAkJlUehmaARP1S$39044e949f63765b785007523adcde3d2ad9c2283d71e3ce5ffe58cbf8d86080', 'ROLE_client', '1');
 
--- Populate the `jean` table with valid foreign keys
-INSERT INTO jean (nom_jean, prix_jean, matiere, couleur, description, marque, fournisseur, photo, taille_id, coupe_jean_id) VALUES
-('jean Xantia', '45', 'coton', 'blanc', 'Jean ajuste blanc', 'Levis', 'Herpi', 'jean_blanc_ajuste.jpg', 1, 4),
-('jean Picasso', '50', 'polyester', 'blanc', 'Jean droit blanc', 'Bershka', 'Herpi', 'jean_blanc_droit.jpg', 2, 2);
--- Continue with remaining data entries, ensuring proper `taille_id` and `coupe_jean_id`.
+INSERT INTO jean (nom_jean, prix_jean, matiere, couleur, description, marque, fournisseur, photo) VALUES
+('jean Xantia ', '45', 'coton','blanc', 'Jean ajuste blanc', 'Levis', 'Herpi','jean_blanc_ajuste.jpg'),
+('jean Picasso ', '50', 'polyester','blanc', 'Jean droit blanc', 'Bershka', 'Herpi','jean_blanc_droit.jpg'),
+('jean Santiago ', '70', 'materiaux recyclés','blanc', 'Jean large blanc', 'Jack and Jones', 'BZB','jean_blanc_large.jpg'),
+('jean Mirabella ', '50', 'polyester','blanc', 'Jean large blanc', 'Bershka', 'Herpi','jean_blanc_large2.jpg'),
+('jean Starlight ', '60', 'coton','blanc', 'Jean slim blanc', 'Calvin Klein', 'Officine Générale','jean_blanc_slim.jpg'),
+('jean Summer ', '70', 'coton','blanc', 'Jean slim blanc', 'Levis', 'BZB','jean_blanc_slim2.jpg'),
+('jean Winter ', '45', 'coton','bleu', 'Jean ajuste bleu', 'Jack and Jones', 'Officine Générale','jean_bleu_ajuste.jpg'),
+('jean Flower ', '50', 'materiaux recyclés','bleu', 'Jean ajuste bleu', 'Calvin Klein', 'BZB','jean_bleu_ajuste2.jpg'),
+('jean OG ', '60', 'polyester','bleu', 'Jean droit bleu', 'Bershka', 'BZB','jean_bleu_droit.jpg'),
+('jean Simple ', '40', 'coton','bleu', 'Jean droit bleu', 'Levis', 'Officine Générale','jean_bleu_droit2.jpg'),
+('jean Crazy ', '45', 'polyester','bleu', 'Jean large bleu', 'Calvin Klein', 'Herpi','jean_bleu_large.jpg'),
+('jean Brazil ', '70', 'polyester','bleu', 'Jean large bleu', 'Jack and Jones', 'BZB','jean_bleu_large2.jpg'),
+('jean Tropical ', '50', 'coton','bleu', 'Jean large bleu', 'Bershka', 'Officine Générale','jean_bleu_large3.jpg'),
+('jean Ecolo ', '60', 'materiaux recyclés','bleu', 'Jean slim bleu', 'Levis', 'Herpi','jean_bleu_slim.jpg'),
+('jean Mer ', '40', 'coton','bleu', 'Jean slim bleu', 'Jack and Jones', 'Herpi','jean_bleu_slim2.jpg'),
+('jean Black ', '40', 'polyester','noir', 'Jean ajuste noir', 'Jack and Jones', 'Officine Générale','jean_noir_ajuste.jpg'),
+('jean Noche ', '70', 'coton','noir', 'Jean ajuste noir', 'Calvin Klein', 'BZB','jean_noir_ajuste2.jpg'),
+('jean Classico ', '50', 'coton','noir', 'Jean ajuste noir', 'Levis', 'Herpi','jean_noir_ajuste3.jpg'),
+('jean Recycle ', '40', 'materiaux recyclés','noir', 'Jean droit noir', 'Bershka', 'BZB','jean_noir_droit.jpg'),
+('jean Michou ', '70', 'polyester','noir', 'Jean droit noir', 'Calvin Klein', 'Officine Générale','jean_noir_droit2.jpg'),
+('jean Goat ', '45', 'coton','noir', 'Jean slim noir', 'Bershka', 'BZB','jean_noir_slim.jpg');
+
+INSERT INTO utilisateur(id_utilisateur,login,email,password,role,nom,est_actif) VALUES
+(1,'admin','admin@admin.fr',
+    'pbkdf2:sha256:1000000$eQDrpqICHZ9eaRTn$446552ca50b5b3c248db2dde6deac950711c03c5d4863fe2bd9cef31d5f11988',
+    'ROLE_admin','admin','1'),
+(2,'client','client@client.fr',
+    'pbkdf2:sha256:1000000$jTcSUnFLWqDqGBJz$bf570532ed29dc8e3836245f37553be6bfea24d19dfb13145d33ab667c09b349',
+    'ROLE_client','client','1'),
+(3,'client2','client2@client2.fr',
+    'pbkdf2:sha256:1000000$qDAkJlUehmaARP1S$39044e949f63765b785007523adcde3d2ad9c2283d71e3ce5ffe58cbf8d86080',
+    'ROLE_client','client2','1');
+
