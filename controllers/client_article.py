@@ -16,7 +16,6 @@ def client_article_show():
                  jean.id_jean AS id_article,
             jean.nom_jean AS nom,
             jean.prix_jean AS prix,
-            jean.stock AS stock,
             jean.photo AS image 
      FROM jean;'''
     mycursor.execute(sql)
