@@ -1,2 +1,7 @@
 https://mathdriprio.pythonanywhere.com/
-# VA TE FAIRE ENCULER
+# SAE S2.04
+
+- CHEVRAND Ethan (référent)
+- CUINET Martin
+- DAGBERT Mathis
+- DE CASTRO--WAGNER Luca
