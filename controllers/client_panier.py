@@ -15,8 +15,25 @@ def client_panier_add():
     id_client = session['id_user']
     id_article = request.form.get('id_article')
     quantite = request.form.get('quantite')
-    # ---------
-    #id_declinaison_article=request.form.get('id_declinaison_article',None)
+    sql = ''' SELECT * FROM ligne_panier WHERE utilisateur_id = %s AND article_id = %s ; '''
+    mycursor.execute(sql, (id_client, id_article))
+    article_panier = mycursor.fetchone()
+
+    mycursor.execute("SELECT * FROM jean WHERE id_jean = %s;", (id_article))
+    article = mycursor.fetchone()
+
+    if not (article_panier is None) and article_panier['quantite'] >= 1:
+        tuple_update = (quantite, id_client, id_article)
+        sql = ''' UPDATE ligne_panier SET quantite = quantite+%s WHERE utilisateur_id = %s AND jean_id = %s ; '''
+        mycursor.execute(sql, tuple_update)
+    else:
+        tuple_insert = (id_client, id_article, quantite)
+        sql = ''' INSERT INTO ligne_panier(utilisateur_id, article_id, quantite, date_ajout) VALUES (%s, %s, %s, current_timestamp); '''
+        mycursor.execute(sql, tuple_insert)
+
+    get_db().commit()
+
+    # id_declinaison_article=request.form.get('id_declinaison_article',None)
     id_declinaison_article = 1
 
 # ajout dans le panier d'une déclinaison d'un article (si 1 declinaison : immédiat sinon => vu pour faire un choix
