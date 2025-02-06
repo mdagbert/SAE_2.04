@@ -16,24 +16,41 @@ def client_article_show():
                  jean.id_jean AS id_article,
             jean.nom_jean AS nom,
             jean.prix_jean AS prix,
-            jean.photo AS image 
+            jean.photo AS image, 
+            jean.stock AS stock
      FROM jean;'''
     mycursor.execute(sql)
     articles = mycursor.fetchall()
 
-    # articles_panier = []
-    # types_article = []
+    sql = ''' SELECT jean_id AS id_article,
+                        utilisateur_id,
+                        quantite_panier AS quantite,
+                        jean.prix_jean AS prix,
+                        jean.nom_jean AS nom
+                        FROM ligne_panier 
+                        JOIN jean ON jean.id_jean = ligne_panier.jean_id
+                        WHERE utilisateur_id = %s ;'''
+    mycursor.execute(sql, id_client)
+    articles_panier = mycursor.fetchall()
+
+    sql = ''' SELECT * FROM coupe_jean ; '''
+    mycursor.execute(sql)
+    types_article = mycursor.fetchall()
 
     # Calcul du prix total du panier
-    # if len(articles_panier) >= 1:
-    #     prix_total = sum(article['prix'] * article['quantite'] for article in articles_panier)
-    # else:
-    #     prix_total = 0
+    if len(articles_panier) >= 1:
+        sql = ''' SELECT SUM(jean.prix_jean * ligne_panier.quantite_panier) AS prix_total FROM ligne_panier
+                    JOIN jean ON ligne_panier.jean_id = jean.id_jean
+                    WHERE utilisateur_id = %s ;'''
+        mycursor.execute(sql, id_client)
+        prix_total = mycursor.fetchone()['prix_total']
+    else:
+        prix_total = 0
 
     # Rendu de la page
     return render_template('client/boutique/panier_article.html',
                            articles=articles,
-                           # articles_panier=articles_panier,
-                           prix_total=0,
-                           # items_filtre=types_article
+                           articles_panier=articles_panier,
+                           prix_total=prix_total,
+                           items_filtre=types_article
                            )

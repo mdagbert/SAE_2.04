@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS jean (
    marque VARCHAR(50),
    fournisseur VARCHAR(50),
    photo VARCHAR(255),
+    stock INT,
    taille_id INT NOT NULL,
    coupe_jean_id INT NOT NULL,
    PRIMARY KEY (id_jean),
@@ -130,6 +131,8 @@ INSERT INTO jean (nom_jean, prix_jean, matiere, couleur, description, marque, fo
 ('jean Recycle ', '40', 'materiaux recyclés','noir', 'Jean droit noir', 'Bershka', 'BZB','jean_noir_droit.jpg', 4, 2),
 ('jean Michou ', '70', 'polyester','noir', 'Jean droit noir', 'Calvin Klein', 'Officine Générale','jean_noir_droit2.jpg', 5, 2),
 ('jean Goat ', '45', 'coton','noir', 'Jean slim noir', 'Bershka', 'BZB','jean_noir_slim.jpg', 1, 1);
+
+UPDATE jean SET stock = 1 ;
 
 INSERT INTO utilisateur(login,email,password,role,nom,est_actif) VALUES
 ('admin','admin@admin.fr',

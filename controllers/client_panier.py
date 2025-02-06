@@ -15,20 +15,21 @@ def client_panier_add():
     id_client = session['id_user']
     id_article = request.form.get('id_article')
     quantite = request.form.get('quantite')
-    sql = ''' SELECT * FROM ligne_panier WHERE utilisateur_id = %s AND article_id = %s ; '''
+    sql = ''' SELECT * FROM ligne_panier WHERE utilisateur_id = %s AND jean_id = %s ; '''
     mycursor.execute(sql, (id_client, id_article))
     article_panier = mycursor.fetchone()
+    print(id_client, id_article, quantite)
 
-    mycursor.execute("SELECT * FROM jean WHERE id_jean = %s;", (id_article))
+    mycursor.execute("SELECT * FROM jean WHERE id_jean = %s;", id_article)
     article = mycursor.fetchone()
 
-    if not (article_panier is None) and article_panier['quantite'] >= 1:
+    if not (article_panier is None) and article_panier['quantite_panier'] >= 1:
         tuple_update = (quantite, id_client, id_article)
-        sql = ''' UPDATE ligne_panier SET quantite = quantite+%s WHERE utilisateur_id = %s AND jean_id = %s ; '''
+        sql = ''' UPDATE ligne_panier SET quantite_panier = quantite_panier+%s WHERE utilisateur_id = %s AND jean_id = %s ; '''
         mycursor.execute(sql, tuple_update)
     else:
         tuple_insert = (id_client, id_article, quantite)
-        sql = ''' INSERT INTO ligne_panier(utilisateur_id, article_id, quantite, date_ajout) VALUES (%s, %s, %s, current_timestamp); '''
+        sql = ''' INSERT INTO ligne_panier(utilisateur_id, jean_id, quantite_panier, date_ajout) VALUES (%s, %s, %s, current_timestamp); '''
         mycursor.execute(sql, tuple_insert)
 
     get_db().commit()
