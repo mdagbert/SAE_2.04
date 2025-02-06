@@ -116,7 +116,7 @@ INSERT INTO jean (nom_jean, prix_jean, matiere, couleur, description, marque, fo
 ('jean Starlight ', '60', 'coton','blanc', 'Jean slim blanc', 'Calvin Klein', 'Officine Générale','jean_blanc_slim.jpg'),
 ('jean Summer ', '70', 'coton','blanc', 'Jean slim blanc', 'Levis', 'BZB','jean_blanc_slim2.jpg'),
 ('jean Winter ', '45', 'coton','bleu', 'Jean ajuste bleu', 'Jack and Jones', 'Officine Générale','jean_bleu_ajuste.jpg'),
-('jean Flower ', '50', 'materiaux recyclés','bleu', 'Jean ajuste bleu', 'Calvin Klein', 'BZB','jean_bleu_ajuste2.jpg'),
+('jean Du Jardin ', '50', 'materiaux recyclés','bleu', 'Jean ajuste bleu', 'Calvin Klein', 'BZB','jean_bleu_ajuste2.jpg'),
 ('jean OG ', '60', 'polyester','bleu', 'Jean droit bleu', 'Bershka', 'BZB','jean_bleu_droit.jpg'),
 ('jean Simple ', '40', 'coton','bleu', 'Jean droit bleu', 'Levis', 'Officine Générale','jean_bleu_droit2.jpg'),
 ('jean Crazy ', '45', 'polyester','bleu', 'Jean large bleu', 'Calvin Klein', 'Herpi','jean_bleu_large.jpg'),
