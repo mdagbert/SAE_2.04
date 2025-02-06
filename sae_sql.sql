@@ -127,7 +127,7 @@ INSERT INTO jean (nom_jean, prix_jean, matiere, couleur, description, marque, fo
 ('jean Black ', '40', 'polyester','noir', 'Jean ajuste noir', 'Jack and Jones', 'Officine Générale','jean_noir_ajuste.jpg'),
 ('jean Noche ', '70', 'coton','noir', 'Jean ajuste noir', 'Calvin Klein', 'BZB','jean_noir_ajuste2.jpg'),
 ('jean Classico ', '50', 'coton','noir', 'Jean ajuste noir', 'Levis', 'Herpi','jean_noir_ajuste3.jpg'),
-('jean Recycle ', '40', 'materiaux recyclés','noir', 'Jean droit noir', 'Bershka', 'BZB','jean_noir_droit.jpg'),
+('jean LaSalle ', '40', 'materiaux recyclés','noir', 'Jean droit noir', 'Bershka', 'BZB','jean_noir_droit.jpg'),
 ('jean Michou ', '70', 'polyester','noir', 'Jean droit noir', 'Calvin Klein', 'Officine Générale','jean_noir_droit2.jpg'),
 ('jean Goat ', '45', 'coton','noir', 'Jean slim noir', 'Bershka', 'BZB','jean_noir_slim.jpg');
 
