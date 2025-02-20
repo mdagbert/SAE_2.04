@@ -7,33 +7,23 @@ client_article = Blueprint('client_article', __name__, template_folder='template
 
 
 @client_article.route('/client/index')
-@client_article.route('/client/article/show')
+@client_article.route('/client/article/show', methods=['GET', 'POST'])
 def client_article_show():
     mycursor = get_db().cursor()
     id_client = session.get('id_user')
 
-    sql = '''SELECT 
-                 jean.id_jean AS id_article,
-            jean.nom_jean AS nom,
-            jean.prix_jean AS prix,
-            jean.photo AS image 
-     FROM jean;'''
-    mycursor.execute(sql)
+
+    sql = '''SELECT id_jean AS id_article, nom_jean AS nom, prix_jean AS prix, photo AS image FROM jean;'''
+    params = []
+    mycursor.execute(sql, params)
     articles = mycursor.fetchall()
 
-    # articles_panier = []
-    # types_article = []
+    # Récupérer les types d'articles pour les filtres
+    sql_types = 'SELECT id_coupe_jean AS id_type_article, nom_coupe AS libelle FROM coupe_jean'
+    mycursor.execute(sql_types)
+    types_article = mycursor.fetchall()
 
-    # Calcul du prix total du panier
-    # if len(articles_panier) >= 1:
-    #     prix_total = sum(article['prix'] * article['quantite'] for article in articles_panier)
-    # else:
-    #     prix_total = 0
-
-    # Rendu de la page
     return render_template('client/boutique/panier_article.html',
                            articles=articles,
-                           # articles_panier=articles_panier,
-                           prix_total=0,
-                           # items_filtre=types_article
-                           )
+                           items_filtre=types_article)
+
