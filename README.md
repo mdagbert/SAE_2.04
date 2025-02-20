@@ -1,7 +1,7 @@
 https://mathdriprio.pythonanywhere.com/
 # SAE S2.04
 
-- CHEVRAND Ethan (référent)
+- CHEVRAND Ethan (référent) (notes et commentaires)
 - CUINET Martin
-- DAGBERT Mathis
+- DAGBERT Mathis (déclinaisons)
 - DE CASTRO--WAGNER Luca
