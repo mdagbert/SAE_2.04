@@ -12,8 +12,6 @@ def client_article_show():
     mycursor = get_db().cursor()
     id_client = session.get('id_user')
 
-<<<<<<< HEAD
-
     sql = '''SELECT id_jean AS id_article, nom_jean AS nom, prix_jean AS prix, photo AS image FROM jean;'''
     params = []
     mycursor.execute(sql, params)
@@ -23,7 +21,6 @@ def client_article_show():
     sql_types = 'SELECT id_coupe_jean AS id_type_article, nom_coupe AS libelle FROM coupe_jean'
     mycursor.execute(sql_types)
     types_article = mycursor.fetchall()
-=======
     sql = '''SELECT 
                  jean.id_jean AS id_article,
             jean.nom_jean AS nom,
@@ -58,16 +55,10 @@ def client_article_show():
         prix_total = mycursor.fetchone()['prix_total']
     else:
         prix_total = 0
->>>>>>> f4f293d5f437572395f632ff72b19faa37894b25
 
     return render_template('client/boutique/panier_article.html',
                            articles=articles,
-<<<<<<< HEAD
-                           items_filtre=types_article)
-
-=======
+                           items_filtre=types_article,
                            articles_panier=articles_panier,
-                           prix_total=prix_total,
-                           items_filtre=types_article
+                           prix_total=prix_total
                            )
->>>>>>> f4f293d5f437572395f632ff72b19faa37894b25
