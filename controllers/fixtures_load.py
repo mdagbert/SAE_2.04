@@ -13,7 +13,7 @@ def fct_fixtures_load():
     db = get_db()
     mycursor = db.cursor()
 
-    with open("/home/MathDriprio/SAE_2.04/sae_sql.sql", 'r', encoding='utf-8') as sql_file:
+    with open("sae_sql.sql", 'r', encoding='utf-8') as sql_file:
         sql_commands = sql_file.read()
 
     try:
