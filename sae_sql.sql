@@ -112,7 +112,6 @@ INSERT INTO utilisateur (login, email, nom, password, role, est_actif) VALUES
 ('client', 'client@client.fr', 'client', 'pbkdf2:sha256:1000000$jTcSUnFLWqDqGBJz$bf570532ed29dc8e3836245f37553be6bfea24d19dfb13145d33ab667c09b349', 'ROLE_client', '1'),
 ('client2', 'client2@client2.fr', 'client2', 'pbkdf2:sha256:1000000$qDAkJlUehmaARP1S$39044e949f63765b785007523adcde3d2ad9c2283d71e3ce5ffe58cbf8d86080', 'ROLE_client', '1');
 
-<<<<<<< HEAD
 -- Populate the `jean` table with valid foreign keys
 INSERT INTO jean (nom_jean, prix_jean, matiere, couleur, description, marque, fournisseur, photo, taille_id, coupe_jean_id) VALUES
 ('jean Xantia ', '45', 'coton','blanc', 'Jean ajuste blanc', 'Levis', 'Herpi','jean_blanc_ajuste.jpg',2, 4),
@@ -136,7 +135,7 @@ INSERT INTO jean (nom_jean, prix_jean, matiere, couleur, description, marque, fo
 ('jean Recycle ', '40', 'materiaux recyclés','noir', 'Jean droit noir', 'Bershka', 'BZB','jean_noir_droit.jpg',2, 4),
 ('jean Michou ', '70', 'polyester','noir', 'Jean droit noir', 'Calvin Klein', 'Officine Générale','jean_noir_droit2.jpg',2, 4),
 ('jean Goat ', '45', 'coton','noir', 'Jean slim noir', 'Bershka', 'BZB','jean_noir_slim.jpg',2, 4);
-=======
+
 INSERT INTO jean (nom_jean, prix_jean, matiere, couleur, description, marque, fournisseur, photo, taille_id, coupe_jean_id) VALUES
 ('jean Xantia ', '45', 'coton','blanc', 'Jean ajuste blanc', 'Levis', 'Herpi','jean_blanc_ajuste.jpg', 1, 4),
 ('jean Picasso ', '50', 'polyester','blanc', 'Jean droit blanc', 'Bershka', 'Herpi','jean_blanc_droit.jpg', 2, 2),
@@ -173,4 +172,3 @@ INSERT INTO utilisateur(login,email,password,role,nom,est_actif) VALUES
     'pbkdf2:sha256:1000000$qDAkJlUehmaARP1S$39044e949f63765b785007523adcde3d2ad9c2283d71e3ce5ffe58cbf8d86080',
     'ROLE_client','client2','1');
 
->>>>>>> f4f293d5f437572395f632ff72b19faa37894b25
