@@ -121,7 +121,7 @@ def client_panier_vider():
 def client_panier_delete_line():
     mycursor = get_db().cursor()
     id_client = session['id_user']
-    id_article = request.form.get('id_article', '')
+    id_article = request.form.get('id_article')
     #id_declinaison_article = request.form.get('id_declinaison_article')
 
     tuple_select = (id_client, id_article)
@@ -132,8 +132,10 @@ def client_panier_delete_line():
 
     tuple_delete = (id_client, id_article)
     sql = ''' DELETE FROM ligne_panier WHERE utilisateur_id = %s  AND jean_id = %s ; '''
+    mycursor.execute(sql, tuple_delete)
     tuple_update = (quantite, id_article)
     sql2=''' UPDATE jean SET stock = stock + %s WHERE id_jean = %s ; '''
+    mycursor.execute(sql2, tuple_update)
 
     get_db().commit()
     return redirect('/client/article/show')
