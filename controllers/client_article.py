@@ -79,7 +79,7 @@ def filtre_panier():
     return redirect('/client/article/show')
 
 @client_article.route('/client/panier/filtre/suppr', methods=['POST'])
-def reset_filtre():
+def client_panier_filtre_suppr():
     session.pop('filter_word', None)
     session.pop('filter_types', None)
     session.pop('filter_prix_min', None)

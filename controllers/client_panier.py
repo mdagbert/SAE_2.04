@@ -136,10 +136,3 @@ def client_panier_delete_line():
 
     get_db().commit()
     return redirect('/client/article/show')
-
-
-@client_panier.route('/client/panier/filtre/suppr', methods=['POST'])
-def client_panier_filtre_suppr():
-    # suppression  des variables en session
-    print("suppr filtre")
-    return redirect('/client/article/show')
