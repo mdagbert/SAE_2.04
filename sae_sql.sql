@@ -115,26 +115,26 @@ INSERT INTO utilisateur (login, email, nom, password, role, est_actif) VALUES
 -- Populate the `jean` table with valid foreign keys
 INSERT INTO jean (nom_jean, prix_jean, matiere, couleur, description, marque, fournisseur, photo, taille_id, coupe_jean_id) VALUES
 ('jean Xantia ', '45', 'coton','blanc', 'Jean ajuste blanc', 'Levis', 'Herpi','jean_blanc_ajuste.jpg',2, 4),
-('jean Picasso ', '50', 'polyester','blanc', 'Jean droit blanc', 'Bershka', 'Herpi','jean_blanc_droit.jpg',2, 4),
-('jean Santiago ', '70', 'materiaux recyclés','blanc', 'Jean large blanc', 'Jack and Jones', 'BZB','jean_blanc_large.jpg',2, 4),
-('jean Mirabella ', '50', 'polyester','blanc', 'Jean large blanc', 'Bershka', 'Herpi','jean_blanc_large2.jpg',2, 4),
-('jean Starlight ', '60', 'coton','blanc', 'Jean slim blanc', 'Calvin Klein', 'Officine Générale','jean_blanc_slim.jpg',2, 4),
-('jean Summer ', '70', 'coton','blanc', 'Jean slim blanc', 'Levis', 'BZB','jean_blanc_slim2.jpg',2, 4),
+('jean Picasso ', '50', 'polyester','blanc', 'Jean droit blanc', 'Bershka', 'Herpi','jean_blanc_droit.jpg',2, 2),
+('jean Santiago ', '70', 'materiaux recyclés','blanc', 'Jean large blanc', 'Jack and Jones', 'BZB','jean_blanc_large.jpg',2, 3),
+('jean Mirabella ', '50', 'polyester','blanc', 'Jean large blanc', 'Bershka', 'Herpi','jean_blanc_large2.jpg',2, 3),
+('jean Starlight ', '60', 'coton','blanc', 'Jean slim blanc', 'Calvin Klein', 'Officine Générale','jean_blanc_slim.jpg',2, 1),
+('jean Summer ', '70', 'coton','blanc', 'Jean slim blanc', 'Levis', 'BZB','jean_blanc_slim2.jpg',2, 1),
 ('jean Winter ', '45', 'coton','bleu', 'Jean ajuste bleu', 'Jack and Jones', 'Officine Générale','jean_bleu_ajuste.jpg',2, 4),
 ('jean Flower ', '50', 'materiaux recyclés','bleu', 'Jean ajuste bleu', 'Calvin Klein', 'BZB','jean_bleu_ajuste2.jpg',2, 4),
-('jean OG ', '60', 'polyester','bleu', 'Jean droit bleu', 'Bershka', 'BZB','jean_bleu_droit.jpg',2, 4),
-('jean Simple ', '40', 'coton','bleu', 'Jean droit bleu', 'Levis', 'Officine Générale','jean_bleu_droit2.jpg',2, 4),
-('jean Crazy ', '45', 'polyester','bleu', 'Jean large bleu', 'Calvin Klein', 'Herpi','jean_bleu_large.jpg',2, 4),
-('jean Brazil ', '70', 'polyester','bleu', 'Jean large bleu', 'Jack and Jones', 'BZB','jean_bleu_large2.jpg',2, 4),
-('jean Tropical ', '50', 'coton','bleu', 'Jean large bleu', 'Bershka', 'Officine Générale','jean_bleu_large3.jpg',2, 4),
-('jean Ecolo ', '60', 'materiaux recyclés','bleu', 'Jean slim bleu', 'Levis', 'Herpi','jean_bleu_slim.jpg',2, 4),
-('jean Mer ', '40', 'coton','bleu', 'Jean slim bleu', 'Jack and Jones', 'Herpi','jean_bleu_slim2.jpg',2, 4),
+('jean OG ', '60', 'polyester','bleu', 'Jean droit bleu', 'Bershka', 'BZB','jean_bleu_droit.jpg',2, 2),
+('jean Simple ', '40', 'coton','bleu', 'Jean droit bleu', 'Levis', 'Officine Générale','jean_bleu_droit2.jpg',2, 2),
+('jean Crazy ', '45', 'polyester','bleu', 'Jean large bleu', 'Calvin Klein', 'Herpi','jean_bleu_large.jpg',2, 3),
+('jean Brazil ', '70', 'polyester','bleu', 'Jean large bleu', 'Jack and Jones', 'BZB','jean_bleu_large2.jpg',2, 3),
+('jean Tropical ', '50', 'coton','bleu', 'Jean large bleu', 'Bershka', 'Officine Générale','jean_bleu_large3.jpg',2, 3),
+('jean Ecolo ', '60', 'materiaux recyclés','bleu', 'Jean slim bleu', 'Levis', 'Herpi','jean_bleu_slim.jpg',2, 1),
+('jean Mer ', '40', 'coton','bleu', 'Jean slim bleu', 'Jack and Jones', 'Herpi','jean_bleu_slim2.jpg',2, 1),
 ('jean Black ', '40', 'polyester','noir', 'Jean ajuste noir', 'Jack and Jones', 'Officine Générale','jean_noir_ajuste.jpg',2, 4),
 ('jean Noche ', '70', 'coton','noir', 'Jean ajuste noir', 'Calvin Klein', 'BZB','jean_noir_ajuste2.jpg',2, 4),
 ('jean Classico ', '50', 'coton','noir', 'Jean ajuste noir', 'Levis', 'Herpi','jean_noir_ajuste3.jpg',2, 4),
-('jean Recycle ', '40', 'materiaux recyclés','noir', 'Jean droit noir', 'Bershka', 'BZB','jean_noir_droit.jpg',2, 4),
-('jean Michou ', '70', 'polyester','noir', 'Jean droit noir', 'Calvin Klein', 'Officine Générale','jean_noir_droit2.jpg',2, 4),
-('jean Goat ', '45', 'coton','noir', 'Jean slim noir', 'Bershka', 'BZB','jean_noir_slim.jpg',2, 4);
+('jean Recycle ', '40', 'materiaux recyclés','noir', 'Jean droit noir', 'Bershka', 'BZB','jean_noir_droit.jpg',2, 2),
+('jean Michou ', '70', 'polyester','noir', 'Jean droit noir', 'Calvin Klein', 'Officine Générale','jean_noir_droit2.jpg',2, 2),
+('jean Goat ', '45', 'coton','noir', 'Jean slim noir', 'Bershka', 'BZB','jean_noir_slim.jpg',2, 1);
 
 UPDATE jean SET stock = 1 ;
 
