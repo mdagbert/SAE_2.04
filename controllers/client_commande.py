@@ -23,7 +23,7 @@ def client_commande_valide():
     prix_total = sum(article['prix_ligne'] for article in articles_panier) if articles_panier else None
 
     # sql_adresses = '''SELECT * FROM adresse WHERE utilisateur_id = %s'''
-    # mycursor.execute(sql_adresses, (id_client,))
+    # mycursor.execute(sql_adresses, (id_client))
     # adresses = mycursor.fetchall()
 
     return render_template('client/boutique/panier_validation_adresses.html',
@@ -66,7 +66,7 @@ def client_commande_add():
     mycursor.execute(sql_delete_panier, (id_client,))
     get_db().commit()
 
-    flash(u'Commande ajout�e', 'alert-success')
+    flash(u'Commande ajoutée', 'alert-success')
     return redirect('/client/article/show')
 
 
@@ -83,7 +83,7 @@ def client_commande_show():
                        WHERE c.utilisateur_id = %s
                        GROUP BY c.id_commande, c.date_achat, e.libelle, c.etat_id
                        ORDER BY c.etat_id ASC, c.date_achat DESC'''
-    mycursor.execute(sql_commandes, (id_client,))
+    mycursor.execute(sql_commandes, (id_client))
     commandes = mycursor.fetchall()
 
     id_commande = request.args.get('id_commande')
@@ -97,14 +97,15 @@ def client_commande_show():
                           JOIN jean j ON lc.jean_id = j.id_jean
                           JOIN commande c ON lc.commande_id = c.id_commande
                           WHERE lc.commande_id = %s'''
-        mycursor.execute(sql_articles, (id_commande,))
+        mycursor.execute(sql_articles, (id_commande))
         articles_commande = mycursor.fetchall()
 
         # sql_adresses = '''SELECT * FROM adresse WHERE utilisateur_id = %s'''
-        # mycursor.execute(sql_adresses, (id_client,))
+        # mycursor.execute(sql_adresses, (id_client))
         # commande_adresses = mycursor.fetchone()
 
     return render_template('client/commandes/show.html',
                            commandes=commandes,
-                           articles_commande=articles_commande,
-                           commande_adresses=commande_adresses)
+                           articles_commande=articles_commande
+                           # ,commande_adresses=commande_adresses
+                           )
