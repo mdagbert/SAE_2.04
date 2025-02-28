@@ -16,13 +16,11 @@ def client_article_show():
     mycursor = get_db().cursor()
     id_client = session.get('id_user')
 
-    # Récupération des filtres de la session
     filter_word = session.get('filter_word', '')
     filter_types = session.get('filter_types', [])
     filter_prix_min = session.get('filter_prix_min', '')
     filter_prix_max = session.get('filter_prix_max', '')
 
-    # Construction de la requête SQL avec filtres
     sql = """
         SELECT jean.id_jean AS id_article, jean.nom_jean AS nom, jean.prix_jean AS prix, 
                jean.photo AS image, jean.stock AS stock, coupe.nom_coupe AS type_article
@@ -57,7 +55,6 @@ def client_article_show():
     mycursor.execute(sql, tuple(params))
     articles = mycursor.fetchall()
 
-    # Récupération des types pour le filtre
     mycursor.execute("SELECT id_coupe_jean, nom_coupe FROM coupe_jean")
     types_article = mycursor.fetchall()
 
@@ -69,13 +66,11 @@ def client_article_show():
 def filtre_panier():
     mycursor = get_db().cursor()
 
-    # Récupération des filtres depuis le formulaire
     filter_word = request.form.get('filter_word', '').strip()
     filter_types = request.form.getlist('filter_types')
     filter_prix_min = request.form.get('filter_prix_min', '').strip()
     filter_prix_max = request.form.get('filter_prix_max', '').strip()
 
-    # Sauvegarde des filtres en session
     session['filter_word'] = filter_word
     session['filter_types'] = filter_types
     session['filter_prix_min'] = filter_prix_min
