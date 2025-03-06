@@ -1,7 +1,11 @@
 #! /usr/bin/python
+
 # -*- coding:utf-8 -*-
+
 from flask import Blueprint, Flask, request, render_template, redirect, abort, flash, session
+
 from connexion_db import get_db
+
 
 client_article = Blueprint('client_article', __name__, template_folder='templates')
 
@@ -13,8 +17,7 @@ def client_article_show():
     id_client = session.get('id_user')
 
     sql = '''SELECT id_jean AS id_article, nom_jean AS nom, prix_jean AS prix, photo AS image FROM jean;'''
-    params = []
-    mycursor.execute(sql, params)
+    mycursor.execute(sql)
     articles = mycursor.fetchall()
 
     # Récupérer les types d'articles pour les filtres
@@ -57,32 +60,16 @@ def client_article_show():
     else:
         prix_total = 0
 
-    return render_template('client/boutique/panier_article.html',
-                           articles=articles,
-                           items_filtre=types_article,
-                           articles_panier=articles_panier,
-                           prix_total=prix_total
-                           )
-
-
-@client_article.route('/client/panier/filtre', methods=['POST'])
-def filtre_panier():
-    mycursor = get_db().cursor()
-
-    filter_word = request.form.get('filter_word', '').strip()
-    filter_types = request.form.getlist('filter_types')
-    filter_prix_min = request.form.get('filter_prix_min', '').strip()
-    filter_prix_max = request.form.get('filter_prix_max', '').strip()
-
-    session['filter_word'] = filter_word
-    session['filter_types'] = filter_types
-    session['filter_prix_min'] = filter_prix_min
-    session['filter_prix_max'] = filter_prix_max
+    filter_word = session.get('filter_word', '')
+    filter_types = session.get('filter_types', [])
+    filter_prix_min = session.get('filter_prix_min', '')
+    filter_prix_max = session.get('filter_prix_max', '')
 
     sql = """
         SELECT jean.id_jean AS id_article, jean.nom_jean AS nom, jean.prix_jean AS prix, 
-               jean.photo AS image, jean.stock AS stock
+               jean.photo AS image, jean.stock AS stock, coupe.nom_coupe AS type_article
         FROM jean
+        LEFT JOIN coupe_jean coupe ON jean.coupe_jean_id = coupe.id_coupe_jean
     """
     conditions = []
     params = []
@@ -107,7 +94,8 @@ def filtre_panier():
     if conditions:
         sql += " WHERE " + " AND ".join(conditions)
 
-    print(f"DEBUG SQL: {sql} | PARAMS: {params}")
+    print(f"DEBUG SQL: {sql} | PARAMS: {params}")  # Debug SQL
+
     mycursor.execute(sql, tuple(params))
     articles = mycursor.fetchall()
 
@@ -116,15 +104,31 @@ def filtre_panier():
 
     return render_template('client/boutique/panier_article.html',
                            articles=articles,
-                           items_filtre=types_article)
+                           items_filtre=types_article,
+                           articles_panier=articles_panier,
+                           prix_total=prix_total
+                           )
 
+@client_article.route('/client/panier/filtre', methods=['POST'])
+def filtre_panier():
+    mycursor = get_db().cursor()
+
+    filter_word = request.form.get('filter_word', '').strip()
+    filter_types = request.form.getlist('filter_types')
+    filter_prix_min = request.form.get('filter_prix_min', '').strip()
+    filter_prix_max = request.form.get('filter_prix_max', '').strip()
+
+    session['filter_word'] = filter_word
+    session['filter_types'] = filter_types
+    session['filter_prix_min'] = filter_prix_min
+    session['filter_prix_max'] = filter_prix_max
+
+    return redirect('/client/article/show')
 
 @client_article.route('/client/panier/filtre/suppr', methods=['POST'])
-def reset_filtre():
+def client_panier_filtre_suppr():
     session.pop('filter_word', None)
     session.pop('filter_types', None)
     session.pop('filter_prix_min', None)
     session.pop('filter_prix_max', None)
     return redirect('/client/article/show')
-
-

@@ -6,7 +6,7 @@ from flask import request, render_template, redirect, abort, flash, session
 from connexion_db import get_db
 
 client_panier = Blueprint('client_panier', __name__,
-                        template_folder='templates')
+                          template_folder='templates')
 
 
 @client_panier.route('/client/panier/add', methods=['POST'])
@@ -40,7 +40,7 @@ def client_panier_add():
     # id_declinaison_article=request.form.get('id_declinaison_article',None)
     id_declinaison_article = 1
 
-# ajout dans le panier d'une déclinaison d'un article (si 1 declinaison : immédiat sinon => vu pour faire un choix
+    # ajout dans le panier d'une déclinaison d'un article (si 1 declinaison : immédiat sinon => vu pour faire un choix
     # sql = '''    '''
     # mycursor.execute(sql, (id_article))
     # declinaisons = mycursor.fetchall()
@@ -57,16 +57,16 @@ def client_panier_add():
     #                                , quantite=quantite
     #                                , article=article)
 
-# ajout dans le panier d'un article
-
+    # ajout dans le panier d'un article
 
     return redirect('/client/article/show')
+
 
 @client_panier.route('/client/panier/delete', methods=['POST'])
 def client_panier_delete():
     mycursor = get_db().cursor()
     id_client = session['id_user']
-    id_article = request.form.get('id_article','')
+    id_article = request.form.get('id_article', '')
     quantite = 1
 
     # ---------
@@ -76,9 +76,9 @@ def client_panier_delete():
     tuple_select = (id_client, id_article)
     sql = ''' SELECT * FROM ligne_panier WHERE utilisateur_id = %s AND jean_id = %s ;'''
     mycursor.execute(sql, tuple_select)
-    article_panier=mycursor.fetchone()
+    article_panier = mycursor.fetchone()
 
-    if not(article_panier is None) and article_panier['quantite_panier'] > 1:
+    if not (article_panier is None) and article_panier['quantite_panier'] > 1:
         tuple_update = (quantite, id_client, id_article)
         sql = ''' UPDATE ligne_panier SET quantite_panier = quantite_panier-%s WHERE utilisateur_id = %s AND jean_id = %s ; '''
         mycursor.execute(sql, tuple_update)
@@ -95,9 +95,6 @@ def client_panier_delete():
     return redirect('/client/article/show')
 
 
-
-
-
 @client_panier.route('/client/panier/vider', methods=['POST'])
 def client_panier_vider():
     mycursor = get_db().cursor()
@@ -111,7 +108,7 @@ def client_panier_vider():
         mycursor.execute(sql, tuple_delete)
 
         tuple_update = (item['jean_id'], item['quantite_panier'])
-        sql2=''' UPDATE jean SET stock = stock + %s WHERE id_jean = %s ; '''
+        sql2 = ''' UPDATE jean SET stock = stock + %s WHERE id_jean = %s ; '''
         mycursor.execute(sql2, tuple_update)
         get_db().commit()
     return redirect('/client/article/show')
@@ -122,7 +119,7 @@ def client_panier_delete_line():
     mycursor = get_db().cursor()
     id_client = session['id_user']
     id_article = request.form.get('id_article')
-    #id_declinaison_article = request.form.get('id_declinaison_article')
+    # id_declinaison_article = request.form.get('id_declinaison_article')
 
     tuple_select = (id_client, id_article)
     sql = ''' SELECT * FROM ligne_panier WHERE utilisateur_id = %s AND jean_id = %s ; '''
@@ -134,27 +131,8 @@ def client_panier_delete_line():
     sql = ''' DELETE FROM ligne_panier WHERE utilisateur_id = %s  AND jean_id = %s ; '''
     mycursor.execute(sql, tuple_delete)
     tuple_update = (quantite, id_article)
-    sql2=''' UPDATE jean SET stock = stock + %s WHERE id_jean = %s ; '''
+    sql2 = ''' UPDATE jean SET stock = stock + %s WHERE id_jean = %s ; '''
     mycursor.execute(sql2, tuple_update)
 
     get_db().commit()
     return redirect('/client/article/show')
-
-
-@client_panier.route('/client/panier/filtre', methods=['POST'])
-def client_panier_filtre():
-    filter_word = request.form.get('filter_word', None)
-    filter_prix_min = request.form.get('filter_prix_min', None)
-    filter_prix_max = request.form.get('filter_prix_max', None)
-    filter_types = request.form.getlist('filter_types', None)
-    # test des variables puis
-    # mise en session des variables
-    return redirect('/client/article/show')
-
-
-@client_panier.route('/client/panier/filtre/suppr', methods=['POST'])
-def client_panier_filtre_suppr():
-    # suppression  des variables en session
-    print("suppr filtre")
-    return redirect('/client/article/show')
-
