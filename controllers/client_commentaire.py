@@ -20,11 +20,11 @@ def client_article_details():
     ## partie 4
     # client_historique_add(id_article, id_client)
 
-    sql = '''
+    sql = ''' SELECT id_jean AS id_article, nom_jean AS nom, prix_jean AS prix, matiere, couleur, description, marque, fournisseur, photo AS image, stock, taille_id, coupe_jean_id FROM jean WHERE id_jean = %s ;
     '''
-    #mycursor.execute(sql, id_article)
-    #article = mycursor.fetchone()
-    article=[]
+    mycursor.execute(sql, id_article)
+    article = mycursor.fetchone()
+    #article=[]
     commandes_articles=[]
     nb_commentaires=[]
     if article is None:
